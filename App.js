@@ -4,10 +4,8 @@ import ReactDom from 'react-dom';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      text: 'some state text',
-      cat: 0
-    };
+    this.state = { text: '' };
+    this.update = this.update.bind(this);
   }
   update(event) {
     this.setState({ text: event.target.value});
@@ -16,13 +14,15 @@ class App extends React.Component {
   render() {
     return (
         <div>
-          <input type="text"
-            onChange={this.update.bind(this)} />
-          <h2>TEXT: {this.state.text}</h2>
+          <Widget text={this.state.text} update={this.update} />
+          <Widget text={this.state.text} update={this.update} />
+          <Widget text={this.state.text} update={this.update} />
         </div>
     )
   }
 }
+
+
 App.propTypes = {
   text: React.PropTypes.string,
   cat: React.PropTypes.number.isRequired
@@ -30,6 +30,16 @@ App.propTypes = {
 
 App.defaultProps = {
   text: "my default text value"
+}
+
+const Widget = (props) => {
+  return (
+    <div>
+      <input type="text"
+            onChange={props.update} />
+      <h2>TEXT: {props.text}</h2>
+    </div>
+  );
 }
 
 ReactDom.render(
