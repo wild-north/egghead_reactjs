@@ -2,7 +2,7 @@ import React from 'react';
 
 class App extends React.Component {
   render() {
-    return (<Button>React</Button>)
+    return (<Button><Heart/>React</Button>)
   }
 }
 
@@ -12,6 +12,6 @@ class Button extends React.Component {
   }
 }
 
-const Heart = () => <span className="gliphicon gliphicon-heart"></span>
+const Heart = () => <span>♥</span>
 
 export default App;
