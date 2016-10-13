@@ -1,66 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+console.log(React);
 class App extends React.Component {
-  render() {
-    return (<Button><Heart/>React</Button>)
-  }
-}
-
-class Button extends React.Component {
   constructor() {
     super();
-    this.state = {val: 0};
     this.update = this.update.bind(this);
+    this.state = {increasing: false};
   }
-  update() {
-    this.setState({
-      val: this.state.val + 1
-    })
-  }
-  componentWillMount() {
-      this.setState({
-        m: 2
-      })
-  }
-  render() {
-    console.log(`rendering ${this.state.val}`)
-    return  <button
-              onClick={this.update}>{this.props.children} {this.state.val * this.state.m}
-            </button>
-  }
-  componentDidMount() {
-    this.inc = setInterval(this.update, 1000);
-  }
-  componentWillUnmount() {
-    clearInterval(this.inc);
-  }
-}
 
-class Wrapper extends React.Component {
-  constructor() {
-    super();
-    this.mount = this.mount.bind(this);
-    this.unmount = this.unmount.bind(this);
-  }
-  mount() {
-    ReactDOM.render(<App/>, document.getElementById('wrapper'));
-  }
-  unmount() {
-    ReactDOM.unmountComponentAtNode(document.getElementById('wrapper'));
-  }
-  render() {
-    return (
-      <div>
-        <button onClick={this.mount}>Mount</button>
-        <button onClick={this.unmount}>Unmount</button>
-        <div id="wrapper"></div>
-      </div>
+  update() {
+    ReactDOM.render(
+      <App val={this.props.val + 1}/>,
+      document.getElementById('app')
     )
   }
+  render() {
+    console.log(this.state.increasing);
+    return (
+      <button onClick={this.update}>
+        {this.props.val}
+      </button>
+    )
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({increasing: nextProps.val > this.props.val});
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.val % 5 === 0;
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('prevProps', prevProps);
+    console.log('prevState', prevState);
+  }
 }
 
-const Heart = () => <span>♥</span>
+App.defaultProps = {
+  val: 0
+};
 
+export default App;
 
-export default Wrapper;
