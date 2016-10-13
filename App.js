@@ -19,17 +19,21 @@ class Button extends React.Component {
     })
   }
   componentWillMount() {
-      console.log('mounting');
+      this.setState({
+        m: 2
+      })
   }
   render() {
-      console.log(`rendering ${this.state.val}`)
-    return <button onClick={this.update}>{this.props.children} {this.state.val}</button>
+    console.log(`rendering ${this.state.val}`)
+    return  <button
+              onClick={this.update}>{this.props.children} {this.state.val * this.state.m}
+            </button>
   }
   componentDidMount() {
-    console.log('mounted');
+    this.inc = setInterval(this.update, 1000);
   }
   componentWillUnmount() {
-      console.log('bye');
+    clearInterval(this.inc);
   }
 }
 
@@ -57,5 +61,6 @@ class Wrapper extends React.Component {
 }
 
 const Heart = () => <span>♥</span>
+
 
 export default Wrapper;
