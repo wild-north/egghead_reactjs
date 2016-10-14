@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+header {
+    display: block;
+    height:10vh;
+    overflow: auto;
+    font-size: 18px;
+    transition: 0.25s ease-in all;
+}
+.error header{
+    background-color: pink;
+    color: red;
+}
+.container {
+    display: flex;
+    height: 90vh;
+}
+pre, textarea {
+    width: 50%;
+    font-family:monospace;
+    font-size: 18px;
+    margin: 0;
+    padding: 10px;
+    color: #222;
+    resize: none;
+}
+textarea:focus {
+    outline:none;
+}
