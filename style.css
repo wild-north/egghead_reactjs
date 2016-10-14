@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: monospace;
+    background-color: #F5F5F5;
 }
 header {
     display: block;
@@ -27,6 +28,9 @@ pre, textarea {
     padding: 10px;
     color: #222;
     resize: none;
+}
+textarea {
+    border: 1px solid #ddd;
 }
 textarea:focus {
     outline:none;
