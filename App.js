@@ -70,4 +70,54 @@ class App extends React.Component {
   }
 }
 
+/*
+// INPUT
+
+const App = (props) => {
+  let myStyle = {
+    backgroundColor: '#000',
+    height: 10
+  }
+  return (
+    <div>
+      <a href="#"
+ notRendered="x"
+         onClick={update}
+      >
+        this is a text
+        {i > 10 ? 'more then ten': 'less or equals then 10'}
+      </a>
+    </div>
+  )
+}
+*/
+
+/*
+
+// OUTPUT
+
+
+"use strict";
+
+var App = function App(props) {
+  var myStyle = {
+    backgroundColor: '#000',
+    height: 10
+  };
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "a",
+      { href: "#",
+        notRendered: "x",
+        onClick: update
+      },
+      "this is a text",
+      i > 10 ? 'more then ten' : 'less or equals then 10'
+    )
+  );
+};
+
+*/
 export default App;

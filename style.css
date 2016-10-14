@@ -9,7 +9,7 @@ header {
     overflow: auto;
     font-size: 18px;
     transition: 0.25s ease-in all;
-    padding: 0 10px;
+    padding: 5px 10px 0 10px;
 }
 .error header{
     background-color: pink;
