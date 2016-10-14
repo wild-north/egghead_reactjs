@@ -17,6 +17,7 @@ class App extends React.Component {
 
     this.update = this.update.bind(this);
     this.updateError = this.updateError.bind(this);
+    this.cancelErrTimeout= this.cancelErrTimeout.bind(this);
   }
   update(e) {
     let code = e.target.value;
@@ -26,11 +27,10 @@ class App extends React.Component {
         output: babel.transform(code, {stage: 0, loose: 'all'}).code,
         err: '',
         showError: false
-      })
+      });
+      this.cancelErrTimeout();
     } catch (err) {
-      if (this.timerId) {
-        clearInterval(this.timerId);
-      }
+      this.cancelErrTimeout();
 
       if (!this.state.showError) {
         this.timerId = setTimeout(() => {
@@ -47,6 +47,12 @@ class App extends React.Component {
       showError: true
     })
   }
+  cancelErrTimeout() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+  }
+
 
   render() {
     return (
